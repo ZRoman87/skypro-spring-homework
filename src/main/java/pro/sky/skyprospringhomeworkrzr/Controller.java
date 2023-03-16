@@ -11,33 +11,41 @@ public class Controller {
         this.calculatorService = calculatorService;
     }
 
-    @GetMapping(path = "/hello")
-    public String hello(@RequestParam("name") String name){
-        return calculatorService.hello(name);
-    }
-
     @GetMapping
     public String welcomeToCalculator(){
         return calculatorService.welcomeToCalculator();
     }
 
     @GetMapping (path = "/plus")
-    public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
-        return num1 + " + " + num2 + " = " + calculatorService.plus(num1, num2);
+    public String plus(@RequestParam(required = false) String num1, @RequestParam(required = false) String num2){
+        if (num1 == null || num2 == null || num1.isEmpty() || num2.isEmpty()) {
+            return "Ошибка: параметры введены не корректно";
+        }
+        return calculatorService.plus(Integer.parseInt(num1), Integer.parseInt(num2));
     }
 
-    @GetMapping (path = "/calculator/minus")
-    public String minus(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
-        return calculatorService.minus(num1, num2);
+    @GetMapping (path = "/minus")
+    public String minus(@RequestParam(required = false) String num1, @RequestParam(required = false) String num2){
+        if (num1 == null || num2 == null || num1.isEmpty() || num2.isEmpty()) {
+            return "Ошибка: параметры введены не корректно";
+        }
+        return calculatorService.minus(Integer.parseInt(num1), Integer.parseInt(num2));
     }
 
-    @GetMapping (path = "/calculator/multiply")
-    public String multiplication(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
-        return calculatorService.multiplication(num1, num2);
+    @GetMapping (path = "/multiply")
+    public String multiplication(@RequestParam(required = false) String num1, @RequestParam(required = false) String num2){
+        if (num1 == null || num2 == null || num1.isEmpty() || num2.isEmpty()) {
+            return "Ошибка: параметры введены не корректно";
+        }
+        return calculatorService.multiplication(Integer.parseInt(num1), Integer.parseInt(num2));
     }
 
-    @GetMapping (path = "/calculator/divide")
-    public String division(@RequestParam("num1") int num1, @RequestParam("num2") int num2){
-        return calculatorService.division(num1, num2);
+    @GetMapping (path = "/divide")
+    public String division(@RequestParam(required = false) String num1, @RequestParam(required = false) String num2){
+        if (num1 == null || num2 == null || num1.isEmpty() || num2.isEmpty()) {
+            return "Ошибка: параметры введены не корректно";
+        }
+        return calculatorService.division(Integer.parseInt(num1), Integer.parseInt(num2));
     }
+
 }
