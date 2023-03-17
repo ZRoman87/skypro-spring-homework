@@ -10,4 +10,5 @@ public class SkyproSpringHomeworkRzrApplication {
 		SpringApplication.run(SkyproSpringHomeworkRzrApplication.class, args);
 	}
 
+
 }
